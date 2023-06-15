@@ -1,10 +1,13 @@
 package com.gbl.neuro.Screens
 
 import android.content.Context.SENSOR_SERVICE
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.media.MediaPlayer
 import android.os.CountDownTimer
-import androidx.compose.foundation.Image
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -29,7 +32,11 @@ import com.gbl.neuro.R
 @Composable
 fun Measurement(navController: NavController) {
     val context = LocalContext.current
-    val sensorManager = context.getSystemService(SENSOR_SERVICE) as SensorManager
+    val sensorManager = remember { context.getSystemService(SENSOR_SERVICE) as SensorManager }
+
+    val accelerometerSensor = remember {sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)}
+
+
     val initialSeconds = 15
     var side by remember {
         mutableStateOf("left")
@@ -44,6 +51,38 @@ fun Measurement(navController: NavController) {
 
     val myMediaPlayer = MediaPlayer.create(context, R.raw.bell)
 
+    val accelerometerEventListener = remember {
+        object : SensorEventListener {
+            override fun onSensorChanged(event: SensorEvent?) {
+                // Handle accelerometer data here
+                if (event?.sensor?.type == Sensor.TYPE_GYROSCOPE) {
+                    val x = event.values[0]
+                    val y = event.values[1]
+                    val z = event.values[2]
+                    // Process accelerometer data as needed
+                    Log.d("Accelerometer", "x: $x, y: $y, z: $z")
+
+                }
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+                // Handle accuracy changes if needed
+            }
+        }
+    }
+
+    fun registerAccelerometerListener() {
+        sensorManager.registerListener(
+            accelerometerEventListener,
+            accelerometerSensor,
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
+    }
+
+    fun unregisterAccelerometerListener() {
+        sensorManager.unregisterListener(accelerometerEventListener)
+    }
+
     fun startTimer() {
         isMeasurementActive = true
         object : CountDownTimer(15000, 1000) {
@@ -55,9 +94,15 @@ fun Measurement(navController: NavController) {
                 isMeasurementActive = false
                 myMediaPlayer.start()
                 side = "right"
+                unregisterAccelerometerListener()
             }
         }.start()
+
+        registerAccelerometerListener()
     }
+
+
+
 
     Column(horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally) {
         Text(text = "New Measurement $timer", modifier = Modifier.padding(8.dp))
