@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.gbl.neuro.Screens.DetailScreen
 import com.gbl.neuro.Screens.HomeScreen
+import com.gbl.neuro.Screens.Measurement
 import com.gbl.neuro.Screens.Screen
 
 @Composable
@@ -46,6 +47,9 @@ fun Navigation() {
                 nullable = true
         })){entry ->
             DetailScreen(name=entry.arguments?.getString("name") ?: "NoNameGiven")
+        }
+        composable(route = Screen.MeasurementScreen.route){
+            Measurement(navController = navController)
         }
 
     }

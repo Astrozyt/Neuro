@@ -42,8 +42,11 @@ fun HomeScreen(navController: NavController){
         )
 
         Spacer(modifier = Modifier.height(8.dp))
-        Button(onClick = {navController.navigate(Screen.DetailScreen.withArgs(text))}, modifier= Modifier.align(Alignment.End)){
-            Text(text="Start")
+        Button(onClick = {navController.navigate(Screen.DetailScreen.route)}, modifier= Modifier.align(Alignment.End)){
+            Text(text="See Detail")
+        }
+        Button(onClick = {navController.navigate(Screen.MeasurementScreen.route)}, modifier= Modifier.align(Alignment.End)){
+            Text(text="New Measurement")
         }
     }
 }
