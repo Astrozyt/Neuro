@@ -5,6 +5,7 @@ package com.gbl.neuro.Screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -32,20 +33,15 @@ fun HomeScreen(navController: NavController){
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.
         fillMaxWidth().
-        padding(horizontal = 50.dp)
+        padding(horizontal = 50.dp).fillMaxHeight()
     ){
-        TextField(value = text,
-            onValueChange = {
-                text = it
-            },
-            modifier = Modifier.fillMaxWidth()
-        )
+        Text(text = "Neuro Status", modifier = Modifier.align(Alignment.CenterHorizontally))
 
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(onClick = {navController.navigate(Screen.DetailScreen.route)}, modifier= Modifier.align(Alignment.End)){
+        Spacer(modifier = Modifier.height(8.dp).align(Alignment.CenterHorizontally))
+        Button(onClick = {navController.navigate(Screen.DetailScreen.route)}, modifier= Modifier.align(Alignment.CenterHorizontally)){
             Text(text="See Detail")
         }
-        Button(onClick = {navController.navigate(Screen.MeasurementScreen.route)}, modifier= Modifier.align(Alignment.End)){
+        Button(onClick = {navController.navigate(Screen.MeasurementScreen.route)}, modifier= Modifier.align(Alignment.CenterHorizontally)){
             Text(text="New Measurement")
         }
     }

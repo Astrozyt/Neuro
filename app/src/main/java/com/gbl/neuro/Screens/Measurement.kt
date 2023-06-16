@@ -40,10 +40,7 @@ fun Measurement(navController: NavController, neuroViewModel: NeuroViewModel) {
     val sensorManager = remember { context.getSystemService(SENSOR_SERVICE) as SensorManager }
     val accelerometerDataPointsLeft = remember { mutableStateListOf<Triple<Float, Float, Float>>() }
     val accelerometerDataPointsRight = remember { mutableStateListOf<Triple<Float, Float, Float>>() }
-
     val accelerometerSensor = remember {sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)}
-
-
     val initialSeconds = 15
     var side by remember {
         mutableStateOf("left")
@@ -79,8 +76,6 @@ fun Measurement(navController: NavController, neuroViewModel: NeuroViewModel) {
                     } else {
                         accelerometerDataPointsRight.add(Triple(x, y, z))
                     }
-//                    accelerometerDataPointsLeft.add(Triple(x, y, z))
-//                    Log.d("Accelerometer $side", "x: $x, y: $y, z: $z")
 
                 }
             }
