@@ -64,6 +64,21 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
+
+    // For the graphs
+//    implementation 'androidx.compose.ui:ui-tooling:1.0.1'
+//    implementation 'androidx.compose.material:material:1.0.1'
+//    implementation 'androidx.compose.animation:animation:1.0.1'
+//    implementation 'androidx.compose.runtime:runtime:1.0.1'
+//    implementation 'androidx.compose.runtime:runtime-livedata:1.0.1'
+//    implementation 'androidx.compose.ui:ui:1.0.1'
+//    implementation 'androidx.compose.ui:ui-tooling-preview:1.0.1'
+//    implementation 'androidx.compose.foundation:foundation:1.0.1'
+//    implementation 'androidx.compose.foundation:foundation-layout:1.0.1'
+//    implementation 'androidx.compose.material:material-icons-core:1.0.1'
+//    implementation 'androidx.compose.material:material-icons-extended:1.0.1'
+//    implementation 'io.github.aakira:compose-charts:0.4.0'
 
 }
 
