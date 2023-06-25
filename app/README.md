@@ -4,12 +4,10 @@ This repository contains the source code and documentation for an Android applic
 
 ## Features
 Gyro Sensor Integration: The app utilizes the built-in gyro sensors on Android devices to capture precise motion data for fine motor skills assessment.
-Interactive Exercises: Users can engage in a variety of interactive exercises designed to measure different aspects of fine motor skills, such as hand-eye coordination, precision, and dexterity.
-Real-time Feedback: The app provides real-time visual and audio feedback to users during exercises, allowing them to monitor their performance and make adjustments as needed.
-Performance Tracking: The app records and displays performance metrics, including accuracy, speed, and stability, to help users track their progress over time.
+Performance Tracking: The app records and displays performance metrics of the performed exercises, to help users track their progress over time.
 User Profiles: Users can create personal profiles within the app to save their exercise history, view past performance, and set goals for improvement.
-Exercise Customization: The app offers customization options for exercises, allowing users to adjust difficulty levels, exercise duration, and other parameters to suit their individual needs.
-Data Export: Users can export their exercise data in a structured format for further analysis or sharing with healthcare professionals, therapists, or researchers.
+Data Export: Users can export their exercise data to a server for further analysis or sharing with healthcare professionals, therapists, or researchers.
+
 ## Getting Started
 ### Prerequisites
 Android Studio: Make sure you have Android Studio installed on your development machine.

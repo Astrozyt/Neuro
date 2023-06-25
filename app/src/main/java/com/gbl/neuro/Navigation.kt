@@ -18,7 +18,7 @@ import com.gbl.neuro.model.NeuroViewModel
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-val neuroViewModel: NeuroViewModel = viewModel()
+    val neuroViewModel: NeuroViewModel = viewModel()
     NavHost(navController=navController, startDestination = Screen.MainScreen.route){
         composable(route = Screen.MainScreen.route){
             HomeScreen(navController = navController)
