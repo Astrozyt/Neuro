@@ -21,7 +21,7 @@ fun Navigation() {
     val neuroViewModel: NeuroViewModel = viewModel()
     NavHost(navController=navController, startDestination = Screen.MainScreen.route){
         composable(route = Screen.MainScreen.route){
-            HomeScreen(navController = navController)
+            HomeScreen(navController = navController, neuroViewModel = neuroViewModel)
         }
         composable(route = Screen.DetailScreen.route){
             DetailScreen(navController = navController, neuroViewModel = neuroViewModel)

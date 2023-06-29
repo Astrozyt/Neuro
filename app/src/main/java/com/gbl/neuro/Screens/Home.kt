@@ -22,12 +22,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.gbl.neuro.model.NeuroViewModel
 
 @Composable
-fun HomeScreen(navController: NavController){
+fun HomeScreen(navController: NavController, neuroViewModel: NeuroViewModel){
     var text by remember {
         mutableStateOf("")
     }
+
+    neuroViewModel.clearWebState();
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -38,8 +41,8 @@ fun HomeScreen(navController: NavController){
         Text(text = "Neuro Status", modifier = Modifier.align(Alignment.CenterHorizontally))
 
         Spacer(modifier = Modifier.height(8.dp).align(Alignment.CenterHorizontally))
-        Button(onClick = {navController.navigate(Screen.DetailScreen.route)}, modifier= Modifier.align(Alignment.CenterHorizontally)){
-            Text(text="See Detail")
+        Button(onClick = {neuroViewModel.getExperimentAnswer("TEST") }, modifier= Modifier.align(Alignment.CenterHorizontally)){
+            Text(text="Test connection")
         }
         Button(onClick = {navController.navigate(Screen.MeasurementScreen.route)}, modifier= Modifier.align(Alignment.CenterHorizontally)){
             Text(text="New Measurement")

@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 
 class NeuroViewModel(): ViewModel() {
 
@@ -22,9 +24,15 @@ class NeuroViewModel(): ViewModel() {
         _newLeft.update { it + reading }
     }
 
+    fun clearWebState() {
+        _webRequestState.update { "" }
+    }
+
     fun getExperimentAnswer(data: String) {
         viewModelScope.launch {
-            val myResult = ExperimentApi.retrofitService.getAnswer(data, "Schorsch", "Device1", "Sensor123", LocalDateTime.now().toString())
+            Log.d("Going to send", data)
+            val myResult = ExperimentApi.retrofitService.getAnswer(data, "Schorsch", "Device1", "Sensor123", OffsetDateTime.now().format(
+                DateTimeFormatter.ISO_OFFSET_DATE_TIME))
             Log.d("Received", myResult)
             _webRequestState.update { myResult }
         }

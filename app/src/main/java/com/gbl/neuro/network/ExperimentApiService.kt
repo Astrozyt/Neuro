@@ -7,7 +7,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-private const val BASE_URL = "http://192.168.178.39:3000"
+private const val BASE_URL = "http://192.168.178.39:3000/"
 
 private val retrofit = Retrofit.Builder().addConverterFactory(ScalarsConverterFactory.create()).baseUrl(BASE_URL).build()
 
@@ -20,8 +20,6 @@ interface ExperimentApiService {
         @Field("Device") device: String,
         @Field("SensorId") sensor_id: String,
         @Field("Timestamp") timestamp: String,
-
-
         ): String
 }
 
