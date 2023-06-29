@@ -29,6 +29,7 @@ import kotlin.random.Random
 fun DetailScreen(navController: NavController, neuroViewModel: NeuroViewModel){
 
     val newLeftState by neuroViewModel.newLeft.collectAsState()
+    val webState by neuroViewModel.webRequestState.collectAsState()
     Box(contentAlignment = Alignment.Center, modifier = Modifier){
         Text(text = "Thank you for taking part!")
 
@@ -40,6 +41,16 @@ fun DetailScreen(navController: NavController, neuroViewModel: NeuroViewModel){
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = "Here is your data:")
             AccelerometerGraph(accelerometerData = newLeftState)
+
+            if(webState == "") {
+                Button(onClick = { neuroViewModel.getExperimentAnswer(newLeftState.joinToString { it.toString() }) }) {
+                    Text(text = "Save in Database")
+                }
+            } else {
+                Button(onClick = { navController.navigate(Screen.MainScreen.route)}) {
+                    Text(text = "Go back to Home")
+                }
+            }
         }
 
     }
@@ -79,8 +90,4 @@ fun AccelerometerGraph(accelerometerData: List<Triple<Float, Float, Float>>) {
         )
     }
 
-    Button(onClick = { /*TODO*/ }) {
-        Text(text = "Save in Database")
-
-    }
 }
